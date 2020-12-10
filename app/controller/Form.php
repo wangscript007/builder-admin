@@ -27,6 +27,7 @@ class Form extends BaseController
 
         // 容器
         $this->engine->addComponent((new Container())
+            ->withLayout(true)
             ->addComponent((new \ke\builder\components\Form())
                 ->withName('form')
 

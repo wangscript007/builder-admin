@@ -17,6 +17,7 @@ use ke\builder\Html;
  * @method $this withPadding(int $left, int $top = null, int $right = null, int $bottom = null) 设置内间距
  * @method $this withMargin(int $left, int $top = null, int $right = null, int $bottom = null) 设置外间距
  * @method $this withBorder(Border $border) 设置外间距
+ * @method $this withLayout(bool $val) 开启布局
  */
 class Container extends Component
 {
@@ -55,6 +56,10 @@ class Container extends Component
         $style = $this->getStyle();
         if ($style) {
             $html->withAttr('style', $style);
+        }
+        $layout = $this->options['layout'][0] ?? false;
+        if ($layout) {
+            $html->withClass('layui-container');
         }
         $html->withValue($this->buildComponent());
 
