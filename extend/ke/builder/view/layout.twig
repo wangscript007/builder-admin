@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Title</title>
+    {{ assets('css', 'layui/css/layui.css') }}
+</head>
+<body>
+{% for component in components %}
+    {{ component.build() | raw }}
+{#    <div style="{{ component.getStyle() }}">test</div>#}
+{% endfor %}
+
+{{ assets('js', 'layui/layui.js') }}
+{{ assets('js', 'builder/app.js') }}
+</body>
+</html>
