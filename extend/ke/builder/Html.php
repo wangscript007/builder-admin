@@ -8,11 +8,18 @@ class Html
 {
     protected $tagName = '';
 
-    protected $value = '';
+    protected $value = null;
 
     protected $attrs = [];
 
     protected $class = [];
+
+
+    public function __construct($tagName = '')
+    {
+        $this->tagName = $tagName;
+    }
+
 
     public function withTag($name)
     {
@@ -47,18 +54,22 @@ class Html
     {
         $attr = '';
         foreach ($this->attrs as $name=>$value) {
-            $attr .= ' ' . $name . '="' . $value . '"';
+            if ($value != '') {
+                $attr .= ' ' . $name . '="' . $value . '"';
+            } else {
+                $attr .= ' ' . $name;
+            }
         }
 
         $class = '';
         if (count($this->class)) {
-            $tmps = [];
+            $temps = [];
             foreach ($this->class as $name) {
-                $tmps[] = $name;
+                $temps[] = $name;
             }
-            $class = ' class="' . implode(' ', $tmps) . '"';
+            $class = ' class="' . implode(' ', $temps) . '"';
         }
-        if ($this->value) {
+        if (!is_null($this->value)) {
             return '<' . $this->tagName . $attr . $class . '>' . $this->value . '</' . $this->tagName . '>';
         } else {
             return '<' . $this->tagName . $attr. $class . ' />';

@@ -35,21 +35,11 @@ class Form extends Component
         $html->withTag('form');
         $html->withClass('layui-form');
 
-        $html->withAttr('name', $this->options['name'][0]);
+        $name = $this->options['name'][0];
+        $html->withAttr('id', $name);
+        $html->withAttr('name', $name);
 
-        $html->withValue($this->buildComponent(function ($str) {
-            $div = new Html();
-            $div->withTag('div');
-            $div->withValue($str);
-            $div->withClass('layui-input-block');
-
-            $html = new Html();
-            $html->withTag('div');
-            $html->withValue($div->toString());
-            $html->withClass('layui-form-item');
-
-            return $html->toString();
-        }));
+        $html->withValue($this->buildComponent());
 
         return $html->toString();
     }

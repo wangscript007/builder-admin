@@ -52,11 +52,5 @@
             "@php think vendor:publish"
         ],
         "test": "vendor/bin/phpunit -c phpunit.xml"
-    },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../composer/apidoc"
-        }
-    ]
+    }
 }

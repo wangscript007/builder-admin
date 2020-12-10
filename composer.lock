@@ -4,15 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5f1142d36530981729e44d54bd3605a",
+    "content-hash": "64135193fbf7a69e2c948c8d12646157",
     "packages": [
         {
             "name": "ke/apidoc",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wdaglb/apidoc.git",
+                "reference": "70b9e38d42ff0783fe5932b2c4ccfaa57991c4f3"
+            },
             "dist": {
-                "type": "path",
-                "url": "../composer/apidoc",
-                "reference": "607bfb0ca432e22c6617817f3f192e10450a33ba"
+                "type": "zip",
+                "url": "https://api.github.com/repos/wdaglb/apidoc/zipball/70b9e38d42ff0783fe5932b2c4ccfaa57991c4f3",
+                "reference": "70b9e38d42ff0783fe5932b2c4ccfaa57991c4f3",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "php": ">=7.2.0"
@@ -23,6 +35,7 @@
                     "ke\\apidoc\\": "./"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "authors": [
                 {
                     "name": "king east",
@@ -36,9 +49,7 @@
                 "apidoc",
                 "接口文档"
             ],
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2020-12-07T03:55:17+00:00"
         },
         {
             "name": "league/flysystem",
@@ -246,6 +257,219 @@
                 }
             ],
             "time": "2020-10-18T11:50:25+00:00"
+        },
+        {
+            "name": "nette/php-generator",
+            "version": "v3.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/php-generator.git",
+                "reference": "fe54415cd22d01bee1307a608058bf131978610a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/fe54415cd22d01bee1307a608058bf131978610a",
+                "reference": "fe54415cd22d01bee1307a608058bf131978610a",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "nette/utils": "^3.1.2",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "nette/tester": "^2.0",
+                "nikic/php-parser": "^4.4",
+                "phpstan/phpstan": "^0.12",
+                "tracy/tracy": "^2.3"
+            },
+            "suggest": {
+                "nikic/php-parser": "to use ClassType::withBodiesFrom() & GlobalFunction::withBodyFrom()"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.5-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0-only",
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 7.4 features.",
+            "homepage": "https://nette.org",
+            "keywords": [
+                "code",
+                "nette",
+                "php",
+                "scaffolding"
+            ],
+            "time": "2020-11-04T11:26:26+00:00"
+        },
+        {
+            "name": "nette/utils",
+            "version": "v3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/utils.git",
+                "reference": "d0427c1811462dbb6c503143eabe5478b26685f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/utils/zipball/d0427c1811462dbb6c503143eabe5478b26685f7",
+                "reference": "d0427c1811462dbb6c503143eabe5478b26685f7",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.2 <8.1"
+            },
+            "conflict": {
+                "nette/di": "<3.0.6"
+            },
+            "require-dev": {
+                "nette/tester": "~2.0",
+                "phpstan/phpstan": "^0.12",
+                "tracy/tracy": "^2.3"
+            },
+            "suggest": {
+                "ext-gd": "to use Image",
+                "ext-iconv": "to use Strings::webalize(), toAscii(), chr() and reverse()",
+                "ext-intl": "to use Strings::webalize(), toAscii(), normalize() and compare()",
+                "ext-json": "to use Nette\\Utils\\Json",
+                "ext-mbstring": "to use Strings::lower() etc...",
+                "ext-tokenizer": "to use Nette\\Utils\\Reflection::getUseStatements()",
+                "ext-xml": "to use Strings::length() etc. when mbstring is not available"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.2-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0-only",
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🛠  Nette Utils: lightweight utilities for string & array manipulation, image handling, safe JSON encoding/decoding, validation, slug or strong password generating etc.",
+            "homepage": "https://nette.org",
+            "keywords": [
+                "array",
+                "core",
+                "datetime",
+                "images",
+                "json",
+                "nette",
+                "paginator",
+                "password",
+                "slugify",
+                "string",
+                "unicode",
+                "utf-8",
+                "utility",
+                "validation"
+            ],
+            "time": "2020-11-25T23:47:50+00:00"
+        },
+        {
+            "name": "open-smf/connection-pool",
+            "version": "v1.0.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/open-smf/connection-pool.git",
+                "reference": "f9289cb5ee61d3e901bc74ab745e5b2162461a1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/open-smf/connection-pool/zipball/f9289cb5ee61d3e901bc74ab745e5b2162461a1e",
+                "reference": "f9289cb5ee61d3e901bc74ab745e5b2162461a1e",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-swoole": ">=4.2.9",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "swoole/ide-helper": "@dev"
+            },
+            "suggest": {
+                "ext-redis": "A PHP extension for Redis."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Smf\\ConnectionPool\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Xie Biao",
+                    "email": "hhxsv5@sina.com"
+                }
+            ],
+            "description": "A common connection pool based on Swoole is usually used as the database connection pool.",
+            "homepage": "https://github.com/open-smf/connection-pool",
+            "keywords": [
+                "connection-pool",
+                "database-connection-pool",
+                "swoole"
+            ],
+            "time": "2020-05-29T05:20:59+00:00"
         },
         {
             "name": "psr/cache",
@@ -462,17 +686,57 @@
             "time": "2017-10-23T01:57:42+00:00"
         },
         {
-            "name": "symfony/finder",
-            "version": "v4.4.17",
+            "name": "swoole/ide-helper",
+            "version": "4.6.0-alpha",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/finder.git",
-                "reference": "9f1d1d883b79a91ef320c0c6e803494e042ef36e"
+                "url": "https://github.com/swoole/ide-helper.git",
+                "reference": "6e6329346a22830b6d966c8191e29a4aed51b4a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/9f1d1d883b79a91ef320c0c6e803494e042ef36e",
-                "reference": "9f1d1d883b79a91ef320c0c6e803494e042ef36e",
+                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/6e6329346a22830b6d966c8191e29a4aed51b4a8",
+                "reference": "6e6329346a22830b6d966c8191e29a4aed51b4a8",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~6.5.0",
+                "laminas/laminas-code": "~3.4.0",
+                "squizlabs/php_codesniffer": "~3.5.0",
+                "symfony/filesystem": "~4.0"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Team Swoole",
+                    "email": "team@swoole.com"
+                }
+            ],
+            "description": "IDE help files for Swoole.",
+            "time": "2020-12-09T19:17:20+00:00"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v5.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "fd8305521692f27eae3263895d1ef1571c71a78d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/fd8305521692f27eae3263895d1ef1571c71a78d",
+                "reference": "fd8305521692f27eae3263895d1ef1571c71a78d",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -482,7 +746,7 @@
                 ]
             },
             "require": {
-                "php": ">=7.1.3"
+                "php": ">=7.2.5"
             },
             "type": "library",
             "autoload": {
@@ -523,7 +787,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-17T19:45:34+00:00"
+            "time": "2020-11-18T09:42:36+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -1198,16 +1462,16 @@
         },
         {
             "name": "topthink/think-swoole",
-            "version": "v3.0.3",
+            "version": "v3.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/think-swoole.git",
-                "reference": "06de3503d91a65281e603f8c48bf954decf3d4e1"
+                "reference": "044caf6430f153f752199dd643b3e499e382724f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/top-think/think-swoole/zipball/06de3503d91a65281e603f8c48bf954decf3d4e1",
-                "reference": "06de3503d91a65281e603f8c48bf954decf3d4e1",
+                "url": "https://api.github.com/repos/top-think/think-swoole/zipball/044caf6430f153f752199dd643b3e499e382724f",
+                "reference": "044caf6430f153f752199dd643b3e499e382724f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1217,14 +1481,17 @@
                 ]
             },
             "require": {
-                "ext-swoole": ">=4.0.0",
-                "symfony/finder": "^4.3.2",
-                "topthink/framework": "^6.0",
-                "topthink/think-helper": "^3.0.4"
+                "ext-json": "*",
+                "ext-swoole": ">=4.4.8",
+                "nette/php-generator": "^3.2",
+                "open-smf/connection-pool": "~1.0",
+                "php": ">7.1",
+                "swoole/ide-helper": "^4.3",
+                "symfony/finder": "^4.3.2|^5.1",
+                "topthink/framework": "^6.0"
             },
             "require-dev": {
-                "swoole/ide-helper": "^4.3",
-                "symfony/var-dumper": "^4.3"
+                "symfony/var-dumper": "^4.3|^5.1"
             },
             "type": "library",
             "extra": {
@@ -1256,7 +1523,7 @@
                 }
             ],
             "description": "Swoole extend for thinkphp",
-            "time": "2019-07-18T09:21:03+00:00"
+            "time": "2020-12-09T10:41:21+00:00"
         },
         {
             "name": "topthink/think-template",
@@ -3136,46 +3403,6 @@
                 }
             ],
             "time": "2020-09-28T06:39:44+00:00"
-        },
-        {
-            "name": "swoole/ide-helper",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swoole/ide-helper.git",
-                "reference": "6e6329346a22830b6d966c8191e29a4aed51b4a8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swoole/ide-helper/zipball/6e6329346a22830b6d966c8191e29a4aed51b4a8",
-                "reference": "6e6329346a22830b6d966c8191e29a4aed51b4a8",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "~6.5.0",
-                "laminas/laminas-code": "~3.4.0",
-                "squizlabs/php_codesniffer": "~3.5.0",
-                "symfony/filesystem": "~4.0"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Team Swoole",
-                    "email": "team@swoole.com"
-                }
-            ],
-            "description": "IDE help files for Swoole.",
-            "time": "2020-12-09T19:17:20+00:00"
         },
         {
             "name": "symfony/polyfill-php72",

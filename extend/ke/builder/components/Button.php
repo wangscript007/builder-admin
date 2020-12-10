@@ -16,10 +16,17 @@ use ke\builder\Html;
  *
  * @method $this withText(string $text) 设置按钮文本
  * @method $this withTheme(string $theme) 设置按钮主题
+ * @method $this withType(string $type) 设置按钮类型
  * @method $this withSize(string $size) 设置按钮大小
  */
 class Button extends Component
 {
+    const TYPE_BUTTON = 'button';
+
+    const TYPE_SUBMIT = 'submit';
+
+    const TYPE_RESET = 'reset';
+
     /** 默认 */
     const THEME_DEFAULT = '';
 
@@ -70,9 +77,18 @@ class Button extends Component
         if (!isset($this->options['text'])) {
             throw new Exception('button.text is null');
         }
+        $type = $this->options['type'][0] ?? null;
+        $theme = $this->options['theme'][0] ?? self::THEME_DEFAULT;
+        $size = $this->options['size'][0] ?? self::SIZE_DEFAULT;
 
-        $html = new Html();
-        $html->withTag('button');
+        $html = new Html('button');
+        if (!is_null($type)) {
+            $html->withAttr('type', $type);
+
+            if ($type == self::TYPE_SUBMIT) {
+                $html->withAttr('lay-submit', '');
+            }
+        }
 
         $style = $this->getStyle();
         if ($style) {
@@ -82,15 +98,12 @@ class Button extends Component
 
         $html->withClass('layui-btn');
 
-        if (self::THEME_DEFAULT) {
-            $html->withClass('layui-btn-' . self::THEME_DEFAULT);
-        }
-        if ($this->options['theme'][0]) {
-            $html->withClass('layui-btn-' . $this->options['theme'][0]);
+        if ($theme) {
+            $html->withClass('layui-btn-' . $theme);
         }
 
-        if (isset($this->options['size'])) {
-            $html->withClass('layui-btn-' . $this->options['size'][0]);
+        if ($size) {
+            $html->withClass('layui-btn-' . $size);
         }
 
         return $html->toString();

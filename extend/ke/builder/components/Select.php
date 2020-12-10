@@ -15,7 +15,9 @@ use ke\builder\Html;
  * @package ke\builder\components
  *
  * @method $this withName(string $text) 设置选择框名称
+ * @method $this withValue(mixed $value) 设置选择框value
  * @method $this withOptions(array $options) 设置选择框选项
+ * @method $this withVerify(string $str) 设置验证器
  */
 class Select extends Component
 {
@@ -31,18 +33,28 @@ class Select extends Component
         if (!isset($this->options['options'])) {
             throw new Exception('select.options is null');
         }
+        $checkedValue = $this->options['value'][0] ?? null;
 
         $html = new Html();
         $html->withTag('select');
 
         $html->withAttr('name', $this->options['name'][0]);
-        $html->withAttr('lay-verify', '');
+        if (isset($this->options['verify'])) {
+            $html->withAttr('lay-verify', $this->options['verify'][0]);
+            unset($this->options['verify']);
+        }
 
         $content = '';
         foreach ($this->options['options'][0] as $value=>$text) {
-            $content .= '<option value="' . $value . '">' . $text . '</option>';
+            $opt = new Html('option');
+            $opt->withAttr('value', $value);
+            $opt->withValue($text);
+            if (!is_null($checkedValue) && $checkedValue == $value) {
+                $opt->withAttr('selected', '');
+            }
+            $content .= $opt->toString() . PHP_EOL;
         }
-        $html->withValue($content);
+        $html->withValue(PHP_EOL . $content);
 
         return $html->toString();
     }

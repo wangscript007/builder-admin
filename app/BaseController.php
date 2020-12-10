@@ -3,6 +3,8 @@ declare (strict_types = 1);
 
 namespace app;
 
+use ke\builder\constraint\EngineConfig;
+use ke\builder\Engine;
 use think\App;
 use think\exception\ValidateException;
 use think\Validate;
@@ -36,6 +38,12 @@ abstract class BaseController
      */
     protected $middleware = [];
 
+
+    /**
+     * @var Engine
+     */
+    protected $engine;
+
     /**
      * 构造方法
      * @access public
@@ -48,6 +56,10 @@ abstract class BaseController
 
         // 控制器初始化
         $this->initialize();
+
+        $this->engine = new Engine((new EngineConfig())
+            ->withPath('/static')
+        );
     }
 
     // 初始化

@@ -19,6 +19,7 @@ use ke\builder\Html;
  * @method $this withValue(string $value) 设置内容
  * @method $this withPlaceholder(string $value)
  * @method $this withAutocomplete(string $value)
+ * @method $this withVerify(string $str) 设置验证器
  */
 class Input extends Component
 {
@@ -28,8 +29,10 @@ class Input extends Component
     /** 密码 */
     const TYPE_PASSWORD = 'password';
 
+    /** 文本域 */
+    const TYPE_TEXTAREA = 'textarea';
+
     protected $options = [
-        'type'=>[self::TYPE_TEXT],
         'autocomplete'=>['off'],
     ];
 
@@ -49,16 +52,32 @@ class Input extends Component
         if (!isset($this->options['name'])) {
             throw new Exception('input.name is null');
         }
+        $type = $this->options['type'][0] ?? self::TYPE_TEXT;
+        $value = $this->options['value'][0] ?? null;
 
         $html = new Html();
-        $html->withTag('input');
+        if ($type === 'textarea') {
+            $html->withTag('textarea');
+            $html->withAttr('class', 'layui-textarea');
+            $html->withValue($value ?? '');
+        } else {
+            $html->withTag('input');
+            $html->withAttr('class', 'layui-input');
+            $html->withAttr('value', $value);
+        }
+        if (isset($this->options['value'])) {
+            unset($this->options['value']);
+        }
+        if (isset($this->options['verify'])) {
+            $html->withAttr('lay-verify', $this->options['verify'][0]);
+            unset($this->options['verify']);
+        }
 
         $style = $this->getStyle();
         if ($style) {
             $html->withAttr('style', $style);
         }
         $html->withAttr('id', $this->options['name'][0]);
-        $html->withAttr('class', 'layui-input');
         foreach ($this->options as $name=>$value) {
             $html->withAttr($name, $value[0]);
         }

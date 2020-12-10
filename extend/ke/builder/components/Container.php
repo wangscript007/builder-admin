@@ -14,8 +14,8 @@ use ke\builder\Html;
  * @package ke\builder\components
  *
  * @method $this withBackgroundColor(string $color) 设置背景颜色
- * @method $this withPadding(int $left, int $top, int $right, int $bottom) 设置内间距
- * @method $this withMargin(int $left, int $top, int $right, int $bottom) 设置外间距
+ * @method $this withPadding(int $left, int $top = null, int $right = null, int $bottom = null) 设置内间距
+ * @method $this withMargin(int $left, int $top = null, int $right = null, int $bottom = null) 设置外间距
  * @method $this withBorder(Border $border) 设置外间距
  */
 class Container extends Component
