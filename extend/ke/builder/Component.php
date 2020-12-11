@@ -4,16 +4,26 @@
 namespace ke\builder;
 
 
-use think\Container as TpContainer;
+use think\Container;
+use think\Request;
 use function Symfony\Component\String\u;
 
 class Component
 {
+    public $id;
+
+    /**
+     * @var Request
+     */
+    protected $request;
+
     protected $options = [];
 
 
     public function __construct()
     {
+        $this->id = base64_encode(mt_rand(0, 99999) . uniqid());
+        $this->request = Container::pull(Request::class);
     }
 
 

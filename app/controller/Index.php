@@ -79,6 +79,16 @@ class Index extends BaseController
                     )
                 )
             )
+
+            ->addComponent((new Container())
+                ->withPadding(20)
+                ->addComponent((new Link())
+                    ->withUrl(url('table/index'))
+                    ->addComponent((new Text())
+                        ->withContent('表格')
+                    )
+                )
+            )
         );
 
         return $this->engine->send();

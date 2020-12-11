@@ -29,9 +29,18 @@ class Html
     }
 
 
-    public function withAttr($name, $value)
+    /**
+     * @param string $name
+     * @param string $value
+     * @param false $single 是否使用单引号
+     * @return $this
+     */
+    public function withAttr($name, $value, $single = false)
     {
-        $this->attrs[$name] = $value;
+        $this->attrs[$name] = [
+            'value'=>$value,
+            'single'=>$single,
+        ];
         return $this;
     }
 
@@ -72,8 +81,9 @@ class Html
     {
         $attr = '';
         foreach ($this->attrs as $name=>$value) {
-            if ($value != '') {
-                $attr .= ' ' . $name . '="' . $value . '"';
+            if ($value['value'] != '') {
+                $quota = $value['single'] ? '\'' : '"';
+                $attr .= ' ' . $name . '=' . $quota . $value['value'] . $quota;
             } else {
                 $attr .= ' ' . $name;
             }

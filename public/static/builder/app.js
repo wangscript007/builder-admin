@@ -1,6 +1,7 @@
-layui.use(['layer', 'form'], function(){
+layui.use(['layer', 'form', 'table'], function(){
     var layer = layui.layer
-        ,form = layui.form;
+        ,form = layui.form
+        ,table = layui.table;
 
     // layer.msg('Hello World');
 
@@ -14,4 +15,7 @@ layui.use(['layer', 'form'], function(){
         return false;
     });
 
+    $('table').each(function (index, el) {
+        table.init($(el).attr('lay-filter'));
+    });
 });
