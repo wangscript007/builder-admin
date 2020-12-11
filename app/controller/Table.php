@@ -6,7 +6,7 @@ namespace app\controller;
 
 use app\BaseController;
 use ke\builder\components\Table as TableComponent;
-use ke\builder\constraint\ListResponse;
+use ke\builder\response\ListResponse;
 
 class Table extends BaseController
 {

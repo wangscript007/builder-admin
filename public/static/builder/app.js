@@ -1,6 +1,7 @@
-layui.use(['layer', 'form', 'table'], function(){
+layui.use(['layer', 'form', 'table', 'tree'], function(){
     var layer = layui.layer
         ,form = layui.form
+        ,tree = layui.tree
         ,table = layui.table;
 
     form.on('submit', function (data) {
@@ -43,6 +44,17 @@ layui.use(['layer', 'form', 'table'], function(){
             }
         });
         return false;
+    });
+
+    // 树
+    $('[data-tree]').each(function (index, el) {
+        var settings = $(el).data('tree')
+        tree.render({
+            elem: '#' + el.id,
+            showCheckbox: settings.showCheckbox,
+            edit: settings.edit,
+            data: settings.data,
+        });
     });
 
     $('table').each(function (index, el) {

@@ -5,10 +5,9 @@ namespace ke\builder\components;
 
 
 use ke\builder\Component;
-use ke\builder\constraint\ListResponse;
+use ke\builder\response\ListResponse;
 use ke\builder\exceptions\Exception;
 use ke\builder\Html;
-use think\Request;
 
 /**
  * 表格

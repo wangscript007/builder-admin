@@ -89,9 +89,19 @@ class Index extends BaseController
                     )
                 )
             )
+
+            ->addComponent((new Container())
+                ->withPadding(20)
+                ->addComponent((new Link())
+                    ->withUrl(url('tree/index'))
+                    ->addComponent((new Text())
+                        ->withContent('树形')
+                    )
+                )
+            )
         );
 
-        return $this->engine->send();
+        return $this->engine;
     }
 
 
@@ -113,7 +123,7 @@ class Index extends BaseController
             )
         );
 
-        return $this->engine->send();
+        return $this->engine;
     }
 
 

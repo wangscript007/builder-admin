@@ -10,6 +10,9 @@ use ke\builder\Html;
 
 /**
  * 树形组件
+ * @method $this withData(array $data) 设置树数据
+ * @method $this withCheckbox(bool $val) 是否显示复选框
+ * @method $this withEdit($val) 是否开启节点的操作图标
  */
 class Tree extends Component
 {
@@ -22,9 +25,18 @@ class Tree extends Component
 
     public function build(): string
     {
+        if (!isset($this->options['data'])) {
+            throw new Exception('tree.data is null');
+        }
+
         $html = new Html();
         $html->withTag('div');
         $html->withAttr('id', $this->id);
+        $html->withAttr('data-tree', json_encode([
+            'data'=>$this->options['data'][0],
+            'edit'=>$this->options['edit'][0] ?? false,
+            'showCheckbox'=>$this->options['checkbox'][0] ?? false,
+        ]), true);
         $html->withValue('');
         return $html->toString();
     }

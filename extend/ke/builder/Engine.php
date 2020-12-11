@@ -4,10 +4,10 @@
 namespace ke\builder;
 
 
-use ke\builder\constraint\DataResponse;
 use ke\builder\constraint\EngineConfig;
-use ke\builder\constraint\ListResponse;
 use ke\builder\exceptions\Exception;
+use ke\builder\response\DataResponse;
+use ke\builder\response\ListResponse;
 use think\Container;
 use think\Request;
 use think\Response;

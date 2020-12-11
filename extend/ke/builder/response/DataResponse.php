@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ke\builder\constraint;
+namespace ke\builder\response;
 
 
 class DataResponse
