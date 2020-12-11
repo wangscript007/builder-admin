@@ -11,8 +11,6 @@ use ke\builder\Html;
 
 /**
  * 输入框
- * Class Input
- * @package ke\builder\components
  *
  * @method $this withName(string $name) 设置输入框名称
  * @method $this withType(string $type) 设置输入框类型

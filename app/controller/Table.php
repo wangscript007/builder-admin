@@ -67,6 +67,6 @@ class Table extends BaseController
             })
         );
 
-        return $this->engine->send();
+        return $this->engine;
     }
 }

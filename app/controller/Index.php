@@ -141,7 +141,7 @@ class Index extends BaseController
             )
         );
 
-        return $this->engine->send();
+        return $this->engine;
     }
 
 
@@ -184,7 +184,7 @@ class Index extends BaseController
             )
         );
 
-        return $this->engine->send();
+        return $this->engine;
     }
 
 
@@ -209,7 +209,7 @@ class Index extends BaseController
             )
         );
 
-        return $this->engine->send();
+        return $this->engine;
     }
 
 }

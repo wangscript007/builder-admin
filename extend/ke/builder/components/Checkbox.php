@@ -10,8 +10,6 @@ use ke\builder\Html;
 
 /**
  * 复选框
- * Class Checkbox
- * @package ke\builder\components
  *
  * @method $this withName(string $text) 设置选择框名称
  * @method $this withTitle(string $text) 设置选择框文本

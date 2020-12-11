@@ -5,26 +5,27 @@ namespace ke\builder\components;
 
 
 use ke\builder\Component;
-use ke\builder\ComponentChildren;
 use ke\builder\exceptions\Exception;
 use ke\builder\Html;
 
 /**
- * 按钮组
+ * 树形组件
  */
-class ButtonGroup extends Component
+class Tree extends Component
 {
-    use ComponentChildren;
+    public function __construct(string $id)
+    {
+        parent::__construct();
+
+        $this->id = $id;
+    }
 
     public function build(): string
     {
         $html = new Html();
         $html->withTag('div');
-
-        $html->withValue($this->buildComponent());
-
-        $html->withClass('layui-btn-group');
-
+        $html->withAttr('id', $this->id);
+        $html->withValue('');
         return $html->toString();
     }
 

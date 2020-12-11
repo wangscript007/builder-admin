@@ -10,8 +10,6 @@ use ke\builder\Html;
 
 /**
  * 开关
- * Class Switchers
- * @package ke\builder\components
  *
  * @method $this withName(string $text) 设置选择框名称
  * @method $this withChecked(bool $val) 设置是否选中

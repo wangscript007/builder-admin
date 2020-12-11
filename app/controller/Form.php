@@ -5,19 +5,15 @@ namespace app\controller;
 
 
 use app\BaseController;
-use ke\builder\components\Blockquote;
+use ke\builder\components\Form as FormComponent;
 use ke\builder\components\Button;
-use ke\builder\components\ButtonGroup;
 use ke\builder\components\Checkbox;
 use ke\builder\components\Container;
 use ke\builder\components\FormItem;
 use ke\builder\components\Input;
-use ke\builder\components\Link;
 use ke\builder\components\Radio;
 use ke\builder\components\Select;
 use ke\builder\components\Switchers;
-use ke\builder\components\Text;
-use ke\builder\decoration\Border;
 
 class Form extends BaseController
 {
@@ -28,15 +24,19 @@ class Form extends BaseController
         // 容器
         $this->engine->addComponent((new Container())
             ->withLayout(true)
-            ->addComponent((new \ke\builder\components\Form())
-                ->withName('form')
+            ->addComponent((new FormComponent('form'))
+                ->withLoad(function ($data) {
+                    return [
+                        'url'=>'http://baidu.com'
+                    ];
+                })
 
                 ->addComponent((new FormItem())
                     ->withBlock(true)
                     ->withLabel('输入框')
                     ->addComponent((new Input())
                         ->withName('input')
-                        ->withVerify('required|phone')
+                        ->withVerify('required')
                     )
                 )
 
@@ -110,6 +110,6 @@ class Form extends BaseController
             )
         );
 
-        return $this->engine->send();
+        return $this->engine;
     }
 }

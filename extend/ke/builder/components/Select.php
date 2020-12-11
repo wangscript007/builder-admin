@@ -11,8 +11,6 @@ use ke\builder\Html;
 
 /**
  * 选择框
- * Class Button
- * @package ke\builder\components
  *
  * @method $this withName(string $text) 设置选择框名称
  * @method $this withValue(mixed $value) 设置选择框value

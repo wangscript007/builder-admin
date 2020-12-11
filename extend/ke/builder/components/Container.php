@@ -10,8 +10,7 @@ use ke\builder\decoration\Border;
 use ke\builder\Html;
 
 /**
- * Class Container
- * @package ke\builder\components
+ * 容器
  *
  * @method $this withBackgroundColor(string $color) 设置背景颜色
  * @method $this withPadding(int $left, int $top = null, int $right = null, int $bottom = null) 设置内间距

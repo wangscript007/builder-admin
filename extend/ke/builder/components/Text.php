@@ -9,9 +9,7 @@ use ke\builder\exceptions\Exception;
 use ke\builder\Html;
 
 /**
- * Class Text
- * @package ke\builder\components
- *
+ * 文本
  * @method $this withContent(string $text) 设置文本内容
  * @method $this withColor(string $color) 设置文本颜色
  */

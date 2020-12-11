@@ -11,7 +11,6 @@ use ke\builder\Html;
 
 /**
  * 单选框
- * @package ke\builder\components
  *
  * @method $this withName(string $text) 设置单选框名称
  * @method $this withValue(mixed $value) 设置单选框value

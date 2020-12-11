@@ -11,8 +11,6 @@ use ke\builder\Html;
 
 /**
  * 按钮
- * Class Button
- * @package ke\builder\components
  *
  * @method $this withText(string $text) 设置按钮文本
  * @method $this withTheme(string $theme) 设置按钮主题

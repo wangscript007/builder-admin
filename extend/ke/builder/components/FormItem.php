@@ -11,8 +11,6 @@ use ke\builder\Html;
 
 /**
  * 表单元素
- * Class FormItem
- * @package ke\builder\components
  *
  * @method $this withLabel(string $value) 设置标签文本
  * @method $this withBlock(bool $value) 设置是否块级元素

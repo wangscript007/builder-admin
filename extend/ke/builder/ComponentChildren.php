@@ -15,7 +15,7 @@ trait ComponentChildren
     /**
      * @var Component[]
      */
-    protected $components = [];
+    public $components = [];
 
 
     public function addComponent(Component $component)

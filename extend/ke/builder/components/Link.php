@@ -10,8 +10,7 @@ use ke\builder\exceptions\Exception;
 use ke\builder\Html;
 
 /**
- * Class Text
- * @package ke\builder\components
+ * 链接
  *
  * @method $this withUrl(string $url) 设置跳转链接
  */
