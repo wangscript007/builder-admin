@@ -28,7 +28,7 @@ class Form extends Component
     public function build(): string
     {
         if (!isset($this->options['name'])) {
-            throw new Exception('select.name is null');
+            throw new Exception('form.name is null');
         }
 
         $html = new Html();

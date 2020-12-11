@@ -9,17 +9,11 @@ use function Symfony\Component\String\u;
 
 class Component
 {
-    /**
-     * @var Template
-     */
-    protected $template;
-
     protected $options = [];
 
 
     public function __construct()
     {
-        $this->template = TpContainer::pull(Template::class);
     }
 
 

@@ -5,6 +5,7 @@ use app\BaseController;
 use ke\builder\components\Blockquote;
 use ke\builder\components\Button;
 use ke\builder\components\ButtonGroup;
+use ke\builder\components\Card;
 use ke\builder\components\Checkbox;
 use ke\builder\components\Container;
 use ke\builder\components\Fieldset;
@@ -65,6 +66,16 @@ class Index extends BaseController
                     ->withUrl(url('index/hr'))
                     ->addComponent((new Text())
                         ->withContent('横线')
+                    )
+                )
+            )
+
+            ->addComponent((new Container())
+                ->withPadding(20)
+                ->addComponent((new Link())
+                    ->withUrl(url('index/card'))
+                    ->addComponent((new Text())
+                        ->withContent('卡片')
                     )
                 )
             )
@@ -160,6 +171,31 @@ class Index extends BaseController
 
             ->addComponent((new Hr())
                 ->withMode(Bg::COLOR_GRAY)
+            )
+        );
+
+        return $this->engine->send();
+    }
+
+
+    /**
+     * 卡片
+     * @return mixed
+     */
+    public function card()
+    {
+        $this->engine->addComponent((new Container())
+            ->withLayout(true)
+
+            // 卡片背景是白色，所以需要在非白背景层里使用
+            ->withBackgroundColor('#f3f3f3')
+            ->withPadding(30)
+
+            ->addComponent((new Card())
+                ->withTitle('测试卡片')
+                ->addComponent((new Text())
+                    ->withContent('卡片内容')
+                )
             )
         );
 

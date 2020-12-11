@@ -22,7 +22,7 @@ class Blockquote extends Component
     public function build(): string
     {
         if (!isset($this->options['content'])) {
-            throw new Exception('text.content is null');
+            throw new Exception('blockquote.content is null');
         }
         $mode = $this->options['mode'][0] ?? self::MODE_DEFAULT;
         $html = new Html();

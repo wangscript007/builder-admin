@@ -21,7 +21,7 @@ class Switchers extends Component
     public function build(): string
     {
         if (!isset($this->options['name'])) {
-            throw new Exception('checkbox.name is null');
+            throw new Exception('switchers.name is null');
         }
 
         $html = new Html('input');

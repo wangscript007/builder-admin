@@ -25,7 +25,7 @@ class Fieldset extends Component
     public function build(): string
     {
         if (!isset($this->options['title'])) {
-            throw new Exception('fieldset.content is null');
+            throw new Exception('fieldset.title is null');
         }
 
         $mode = $this->options['mode'][0] ?? self::MODE_DEFAULT;

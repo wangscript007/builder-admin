@@ -50,6 +50,24 @@ class Html
     }
 
 
+    protected function getValue($value)
+    {
+        if (is_array($value)) {
+            $content = '';
+            foreach ($value as $item) {
+                $content .= $this->getValue($item);
+            }
+            return $content;
+        } else if (is_callable($value)) {
+            return call_user_func($value);
+        } else if ($value instanceof Html) {
+            return $value->toString();
+        } else {
+            return $value;
+        }
+    }
+
+
     public function toString()
     {
         $attr = '';
@@ -69,8 +87,10 @@ class Html
             }
             $class = ' class="' . implode(' ', $temps) . '"';
         }
-        if (!is_null($this->value)) {
-            return '<' . $this->tagName . $attr . $class . '>' . $this->value . '</' . $this->tagName . '>';
+
+        $value = $this->getValue($this->value);
+        if (!is_null($value)) {
+            return '<' . $this->tagName . $attr . $class . '>' . $value . '</' . $this->tagName . '>';
         } else {
             return '<' . $this->tagName . $attr. $class . ' />';
         }
