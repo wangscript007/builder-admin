@@ -109,6 +109,16 @@ class Index extends BaseController
                     )
                 )
             )
+
+            ->addComponent((new Container())
+                ->withPadding(20)
+                ->addComponent((new Link())
+                    ->withUrl(url('tinymce/index'))
+                    ->addComponent((new Text())
+                        ->withContent('富文本 Tinymce')
+                    )
+                )
+            )
         );
 
         return $this->engine;
