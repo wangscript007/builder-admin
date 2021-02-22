@@ -11,7 +11,6 @@ use ke\builder\Html;
 
 /**
  * 表单
- * @method $this withOptions(array $options) 设置选择框选项
  * @method $this withLoad(callable $callback) 提交回调
  */
 class Form extends Component

@@ -99,6 +99,43 @@ class Index extends BaseController
                     )
                 )
             )
+
+            ->addComponent((new Container())
+                ->withPadding(20)
+                ->addComponent((new Link())
+                    ->withUrl(url('index/buttonGroup'))
+                    ->addComponent((new Text())
+                        ->withContent('按钮组')
+                    )
+                )
+            )
+        );
+
+        return $this->engine;
+    }
+
+
+    /**
+     * 按钮组
+     * @return mixed
+     */
+    public function buttonGroup()
+    {
+        $this->engine->addComponent((new Container())
+            ->withLayout(true)
+            ->addComponent((new ButtonGroup())
+                ->addComponent((new Button())
+                    ->withText('button')
+                )
+                ->addComponent((new Button())
+                    ->withTheme(Button::THEME_WARM)
+                    ->withText('button2')
+                )
+                ->addComponent((new Button())
+                    ->withTheme(Button::THEME_DANGER)
+                    ->withText('button3')
+                )
+            )
         );
 
         return $this->engine;

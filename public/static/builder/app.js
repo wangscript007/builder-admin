@@ -4,6 +4,7 @@ layui.use(['layer', 'form', 'table', 'tree'], function(){
         ,tree = layui.tree
         ,table = layui.table;
 
+    // 表单提交
     form.on('submit', function (data) {
         var load = layer.load(data.form)
         var text = $(data.elem).html()
