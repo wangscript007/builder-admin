@@ -5,6 +5,7 @@ namespace ke\builder\components;
 
 
 use ke\builder\Component;
+use ke\builder\Context;
 use ke\builder\exceptions\Exception;
 use ke\builder\Html;
 
@@ -29,6 +30,7 @@ class Tinymce extends Component
         if (!isset($this->options['js'])) {
             throw new Exception('tinymce.js is null');
         }
+        Context::addedModule('k_tinymce');
         $container = new Html('div');
 
         $script = new Html('script');

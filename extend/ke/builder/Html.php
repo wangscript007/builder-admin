@@ -15,15 +15,29 @@ class Html
     protected $class = [];
 
 
-    public function __construct($tagName = '')
+    public function __construct($tagName = '', $id = '')
     {
         $this->tagName = $tagName;
+        if ($id) {
+            $this->attrs['id'] = ['value'=>$id, 'single'=>false];
+        }
     }
 
 
     public function withTag($name)
     {
         $this->tagName = $name;
+
+        return $this;
+    }
+
+
+    public function withId($value)
+    {
+        $this->attrs['id'] = [
+            'value'=>$value,
+            'single'=>false,
+        ];
 
         return $this;
     }
@@ -71,6 +85,8 @@ class Html
             return call_user_func($value);
         } else if ($value instanceof Html) {
             return $value->toString();
+        } else if ($value instanceof Component) {
+            return $value->build();
         } else {
             return $value;
         }

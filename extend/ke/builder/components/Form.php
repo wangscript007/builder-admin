@@ -6,6 +6,7 @@ namespace ke\builder\components;
 
 use ke\builder\Component;
 use ke\builder\ComponentChildren;
+use ke\builder\Context;
 use ke\builder\exceptions\Exception;
 use ke\builder\Html;
 
@@ -16,7 +17,6 @@ use ke\builder\Html;
 class Form extends Component
 {
     use ComponentChildren;
-
 
     public function __construct(string $id)
     {
@@ -35,12 +35,12 @@ class Form extends Component
         return call_user_func($this->options['load'][0], $data);
     }
 
-
     public function build(): string
     {
-        if (!isset($this->options['load'])) {
+        if (!isset($this->options['load'][0])) {
             throw new Exception('form.load is null');
         }
+        Context::addedModule('k_form');
 
         $html = new Html();
         $html->withTag('form');

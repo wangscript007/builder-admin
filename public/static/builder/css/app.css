@@ -1,0 +1,129 @@
+.ke-side {
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    background-color: #393D49;
+}
+.ke-side .ke-side-logo {
+    position: fixed;
+    left: 0;
+    top: 0;
+    text-align: center;
+    z-index: 1002;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px;
+    box-sizing: border-box;
+    overflow: hidden;
+    font-weight: 300;
+    background-color: #393D49;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 15%);
+    color: rgba(255,255,255,.8);
+}
+.ke-side .layui-nav {
+    margin-top: 50px;
+}
+.ke-side .layui-this {
+    background-color: #009688 !important;
+}
+.ke-side .layui-nav-child a {
+    padding-left: 55px;
+}
+.ke-side .layui-icon {
+    margin-right: 10px;
+}
+
+/* 头部 */
+.ke-header {
+    position: fixed;
+    top: 0;
+    left: 200px;
+    right: 0;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 24px;
+    z-index: 1000;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+}
+.ke-header .layui-nav {
+    background-color: #fff!important;
+}
+.ke-header .layui-nav-item {
+    height: 50px;
+    line-height: 50px;
+}
+.ke-header .layui-nav-item a,
+.ke-header .layui-nav-item a:hover {
+    color: #333;
+    cursor: pointer;
+}
+.ke-header .layui-nav-item .layui-nav-more {
+    border-top-color: #333;
+}
+.ke-header .layui-nav-item .layui-nav-mored {
+    border-color: transparent transparent #666;
+}
+
+/* 内容区 */
+.ke-body {
+    position: fixed;
+    top: 55px;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    z-index: 998;
+    width: auto;
+    overflow-y: auto;
+    background-color: #f2f2f2;
+}
+.ke-body .ke-tab-content {
+    position: fixed;
+    top: 98px;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+}
+.ke-body .ke-content {
+    border: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.ke-body .ke-tab-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    display: none;
+}
+.ke-body .ke-tab-item.itemed {
+    display: block;
+}
+.ke-body .layui-tab {
+    margin: 0;
+    overflow: hidden;
+    height: 40px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+}
+.ke-body .layui-tab li:hover, .ke-body .layui-tab .layui-this {
+    background-color: #f6f6f6;
+}
+.ke-body .layui-tab li.layui-this:after {
+    width: 100%;
+    border: none;
+    height: 2px;
+    background-color: #292B34;
+}

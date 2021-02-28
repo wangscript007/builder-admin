@@ -12,6 +12,7 @@ use ke\builder\components\Container;
 class Tinymce extends BaseController
 {
 
+    // 富文本demo
     public function index()
     {
 

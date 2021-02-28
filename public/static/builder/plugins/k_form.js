@@ -1,9 +1,6 @@
-layui.use(['layer', 'form', 'table', 'tree', 'element'], function(){
+layui.define(['layer', 'form'], function(exports){
     var layer = layui.layer
-        ,form = layui.form
-        ,tree = layui.tree
-        ,element = layui.element
-        ,table = layui.table;
+        ,form = layui.form;
 
     // 表单提交
     form.on('submit', function (data) {
@@ -48,4 +45,6 @@ layui.use(['layer', 'form', 'table', 'tree', 'element'], function(){
         return false;
     });
 
+
+    exports('k_form')
 });

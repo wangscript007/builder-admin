@@ -5,6 +5,7 @@ namespace ke\builder\components;
 
 
 use ke\builder\Component;
+use ke\builder\Context;
 use ke\builder\response\ListResponse;
 use ke\builder\exceptions\Exception;
 use ke\builder\Html;
@@ -40,6 +41,7 @@ class Table extends Component
         if (!isset($this->options['load'])) {
             throw new Exception('load is null');
         }
+        Context::addedModule('k_table');
         $html = new Html('table');
         $html->withAttr('lay-filter', $this->id);
         $html->withAttr('lay-data', json_encode([

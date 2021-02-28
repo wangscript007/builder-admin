@@ -9,6 +9,7 @@ use ke\builder\exceptions\Exception;
 use ke\builder\response\DataResponse;
 use ke\builder\response\ListResponse;
 use think\Container;
+use think\facade\App;
 use think\Request;
 use think\Response;
 
@@ -26,10 +27,39 @@ class Engine extends Response
      */
     protected $components = [];
 
+    /**
+     * @var string
+     */
+    protected $title = 'Builder Admin';
+
+    /**
+     * 是否开启编译缓存 正式部署环境下建议开启
+     * @var bool
+     */
+    protected $cache = false;
+
     public function __construct(EngineConfig $config)
     {
         $this->config = $config->getData();
         $this->request = Container::pull(Request::class);
+    }
+
+
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+
+    /**
+     * 开启编译缓存
+     * @return $this
+     */
+    public function enabledCache()
+    {
+        $this->cache = true;
+        return $this;
     }
 
 
@@ -106,60 +136,117 @@ class Engine extends Response
     }
 
 
-    public function send(): void
+    protected function output($data): string
+    {
+        if ($this->request->isAjax()) {
+            $this->contentType('application/json');
+            $componentId = $this->request->get('component_id');
+            return json_encode($this->resolveComponent($this->components, $componentId));
+        }
+
+        return $this->resolve();
+    }
+
+
+    protected function resolve()
     {
         $version = $this->config['version'];
         if ($this->config['debug']) {
             $version .= '.' . time();
         }
 
-        $isAjax = $this->request->isAjax();
-        if ($isAjax) {
-            $this->contentType('application/json');
-            $componentId = $this->request->get('component_id');
-            $this->content(json_encode($this->resolveComponent($this->components, $componentId)));
-        } else {
-            $this->contentType('text/html');
-            $content = '<!DOCTYPE html>';
-            $html = new Html('html');
-            $html->withAttr('lang', 'zh-CN');
-            $html->withValue([
-                (new Html('head'))->withValue([
-                    (new Html('meta'))->withAttr('charset', 'UTF-8'),
-                    (new Html('meta'))->withAttr('name', 'viewport')
-                        ->withAttr('content', 'width=device-width, initial-scale=1, maximum-scale=1'),
-                    (new Html('title'))->withValue('test'),
-                    (new Html('link'))->withAttr('rel', 'stylesheet')
-                        ->withAttr('href', $this->loadAssets('layui/css/layui.css', $version)),
-                ]),
-                (new Html('body'))->withValue(function () use($version) {
-                    $content = '';
+        $this->contentType('text/html');
 
-                    foreach ($this->components as $component) {
-                        $content .= $component->build();
-                    }
+        $content = '';
 
-                    $content .= PHP_EOL . (new Html('script'))
-                            ->withValue('')
-                            ->withAttr('src', $this->loadAssets('builder/jquery.min.js', '3.5.1'))
-                            ->toString();
-                    $content .= PHP_EOL . (new Html('script'))
-                            ->withValue('')
-                            ->withAttr('src', $this->loadAssets('layui/layui.js', $version))
-                            ->toString();
-                    $content .= PHP_EOL . (new Html('script'))
-                            ->withValue('')
-                            ->withAttr('src', $this->loadAssets('builder/app.js', $version))
-                            ->toString();
+        $children = [];
 
-                    return $content;
-                }),
-            ]);
+        $content .= '<!DOCTYPE html>';
+        $children[] = (new Html('head'))->withValue([
+            (new Html('meta'))->withAttr('charset', 'UTF-8'),
+            (new Html('meta'))->withAttr('name', 'viewport')
+                ->withAttr('content', 'width=device-width, initial-scale=1, maximum-scale=1'),
+            (new Html('title'))->withValue($this->title),
+            (new Html('link'))->withAttr('rel', 'stylesheet')
+                ->withAttr('href', $this->loadAssets('layui/css/layui.css', $version)),
+            (new Html('link'))->withAttr('rel', 'stylesheet')
+                ->withAttr('href', $this->loadAssets('builder/css/app.css', $version)),
+        ]);
 
-            $this->content($content . PHP_EOL . $html->toString());
+        $body = (new Html('body'))->withValue(function () use($version, &$globalJs, &$globalPluginJs) {
+            $content = '';
+
+            foreach ($this->components as $component) {
+                $content .= $component->build();
+            }
+
+            $content .= PHP_EOL . (new Html('script'))
+                    ->withValue('')
+                    ->withAttr('src', $this->loadAssets('builder/jquery.min.js', '3.5.1'))
+                    ->toString();
+            $content .= PHP_EOL . (new Html('script'))
+                    ->withValue('')
+                    ->withAttr('src', $this->loadAssets('layui/layui.js', $version))
+                    ->toString();
+            $content .= PHP_EOL . (new Html('script'))
+                    ->withValue('')
+                    ->withAttr('src', $this->loadAssets('builder/utils.js', $version))
+                    ->toString();
+
+            foreach (Context::getJsList() as $src) {
+                $content .= PHP_EOL . (new Html('script'))
+                        ->withValue('')
+                        ->withAttr('src', $this->loadAssets($src, $version))
+                        ->toString();
+            }
+//            $content .= PHP_EOL . (new Html('script'))
+//                    ->withValue('')
+//                    ->withAttr('src', $this->loadAssets('builder/app.js', $version))
+//                    ->toString();
+            $script = '';
+            $initMod = '';
+
+            foreach (Context::getModules() as $name) {
+                $script .= "'${name}',";
+                $initMod .= "layui.${name};";
+            }
+            $content .= PHP_EOL . (new Html('script'))
+                    ->withValue([
+                        'var componentOptions = ' . Context::getClientOptions() . ';',
+                        'layui.config({ version: \'' . ($version) . '\', base: \'' . $this->config['path'] . '/builder/plugins/\' });',
+                        sprintf('layui.use([%s], function() {%s})', $script, $initMod),
+                    ])
+                    ->toString();
+
+            return $content;
+        });
+
+        $children[] = $body;
+        $html = new Html('html');
+        $html->withAttr('lang', 'zh-CN');
+        $html->withValue($children);
+
+        $content .= PHP_EOL . $html->toString();
+
+        $this->setCache($content);
+
+        return $content;
+    }
+
+
+    protected function getCachePath()
+    {
+        return $this->config['cache_path'] ?: (App::getRuntimePath() . 'builder/');
+    }
+
+
+    protected function setCache(string $content)
+    {
+        $path = $this->getCachePath();
+        if (!is_dir($path)) {
+            mkdir($path, 0755, true);
         }
-
-        parent::send();
+        file_put_contents($path . md5('21'), $content);
     }
 
 }

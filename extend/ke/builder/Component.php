@@ -4,6 +4,7 @@
 namespace ke\builder;
 
 
+use ke\builder\exceptions\Exception;
 use think\Container;
 use think\Request;
 use function Symfony\Component\String\u;
@@ -18,6 +19,8 @@ class Component
     protected $request;
 
     protected $options = [];
+
+    protected $pluginJs = [];
 
 
     public function __construct()
@@ -39,9 +42,14 @@ class Component
 
             return $this->options[$name];
         }
-        return null;
+        throw new Exception('method not exist: ' . $name);
     }
 
+
+    protected function addClientOptions(string $group, array $options)
+    {
+        Context::addClientOptions($group, $this->id, $options);
+    }
 
 
     public function build(): string

@@ -119,6 +119,16 @@ class Index extends BaseController
                     )
                 )
             )
+
+            ->addComponent((new Container())
+                ->withPadding(20)
+                ->addComponent((new Link())
+                    ->withUrl(url('AdminLayout/index'))
+                    ->addComponent((new Text())
+                        ->withContent('后台布局')
+                    )
+                )
+            )
         );
 
         return $this->engine;

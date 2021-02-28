@@ -5,6 +5,7 @@ namespace ke\builder\components;
 
 
 use ke\builder\Component;
+use ke\builder\Context;
 use ke\builder\exceptions\Exception;
 use ke\builder\Html;
 
@@ -28,6 +29,7 @@ class Tree extends Component
         if (!isset($this->options['data'])) {
             throw new Exception('tree.data is null');
         }
+        Context::addedModule('k_tree');
 
         $html = new Html();
         $html->withTag('div');
