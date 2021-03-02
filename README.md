@@ -13,6 +13,8 @@ Builder Admin
 
 ## 文档
 
+[查看组件文档](https://wdaglb.github.io/builder-admin)
+
 QQ交流群：942503490
 
 by King east
