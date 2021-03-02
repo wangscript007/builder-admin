@@ -31,13 +31,13 @@ class Tinymce extends Component
         $this->id = $id;
     }
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['js'])) {
             throw new Exception('tinymce.js is null');
         }
         Context::addedModule('k_tinymce');
-        $container = new Html('div');
+        $container = new Html('div', $this->id);
 
         $script = new Html('script');
         $script->withAttr('src', $this->options['js'][0]);
@@ -54,7 +54,7 @@ class Tinymce extends Component
         $html->withValue('');
 
         $container->withValue($script->toString() . $html->toString());
-        return $container->toString();
+        return $container;
     }
 
 }

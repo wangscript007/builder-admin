@@ -25,20 +25,19 @@ class Blockquote extends Component
 
     const MODE_NM = 'nm';
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['content'])) {
             throw new Exception('blockquote.content is null');
         }
         $mode = $this->options['mode'][0] ?? self::MODE_DEFAULT;
-        $html = new Html();
-        $html->withTag('blockquote');
+        $html = new Html('blockquote', $this->id);
         $html->withClass('layui-elem-quote');
         if ($mode) {
             $html->withClass('layui-quote-' . $mode);
         }
         $html->withValue($this->options['content'][0]);
-        return $html->toString();
+        return $html;
     }
 
 }

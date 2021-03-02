@@ -41,7 +41,7 @@ class Echarts extends Component
         return $this;
     }
 
-    public function build(): string
+    public function build()
     {
         Context::addedModule('k_echarts');
         Context::addedJs('builder/libs/echarts/echarts.min.js');
@@ -54,7 +54,7 @@ class Echarts extends Component
         $container->withAttr('style', sprintf('display:inline-block;width:%spx;height:%spx;', $width, $height));
         $container->withValue('');
 
-        return $container->toString();
+        return $container;
     }
 
 }

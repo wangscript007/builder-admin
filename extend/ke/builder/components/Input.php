@@ -51,7 +51,7 @@ class Input extends Component
     }
 
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['name'])) {
             throw new Exception('input.name is null');
@@ -60,6 +60,7 @@ class Input extends Component
         $value = $this->options['value'][0] ?? null;
 
         $html = new Html();
+        $html->withAttr('id', $this->id);
         if ($type === 'textarea') {
             $html->withTag('textarea');
             $html->withAttr('class', 'layui-textarea');
@@ -81,11 +82,10 @@ class Input extends Component
         if ($style) {
             $html->withAttr('style', $style);
         }
-        $html->withAttr('id', $this->options['name'][0]);
         foreach ($this->options as $name=>$value) {
             $html->withAttr($name, $value[0]);
         }
-        return $html->toString();
+        return $html;
     }
 
 }

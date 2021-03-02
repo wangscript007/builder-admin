@@ -28,15 +28,14 @@ class Fieldset extends Component
 
     const MODE_TITLE = 'title';
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['title'])) {
             throw new Exception('fieldset.title is null');
         }
 
         $mode = $this->options['mode'][0] ?? self::MODE_DEFAULT;
-        $html = new Html();
-        $html->withTag('fieldset');
+        $html = new Html('fieldset', $this->id);
         $html->withClass('layui-elem-field');
         if ($mode) {
             $html->withClass('layui-field-' . $mode);
@@ -51,7 +50,7 @@ class Fieldset extends Component
 
         $html->withValue($title->toString() . $content->toString());
 
-        return $html->toString();
+        return $html;
     }
 
 }

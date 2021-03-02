@@ -41,15 +41,14 @@ class Form extends Component
         return call_user_func($this->options['load'][0], $data);
     }
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['load'][0])) {
             throw new Exception('form.load is null');
         }
         Context::addedModule('k_form');
 
-        $html = new Html();
-        $html->withTag('form');
+        $html = new Html('form', $this->id);
         $html->withClass('layui-form');
 
         $html->withAttr('id', $this->id);
@@ -57,7 +56,7 @@ class Form extends Component
 
         $html->withValue($this->buildComponent());
 
-        return $html->toString();
+        return $html;
     }
 
 }

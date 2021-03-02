@@ -32,19 +32,18 @@ class Text extends Component
     }
 
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['content'])) {
             throw new Exception('text.content is null');
         }
-        $html = new Html();
-        $html->withTag('span');
+        $html = new Html('span', $this->id);
         $style = $this->getStyle();
         if ($style) {
             $html->withAttr('style', $style);
         }
         $html->withValue($this->options['content'][0]);
-        return $html->toString();
+        return $html;
     }
 
 }

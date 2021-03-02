@@ -24,13 +24,13 @@ use ke\builder\Html;
  */
 class Checkbox extends Component
 {
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['name'])) {
             throw new Exception('checkbox.name is null');
         }
 
-        $html = new Html('input');
+        $html = new Html('input', $this->id);
 
         $html->withAttr('name', $this->options['name'][0]);
         $html->withAttr('type', 'checkbox');
@@ -43,7 +43,7 @@ class Checkbox extends Component
             unset($this->options['verify']);
         }
 
-        return $html->toString();
+        return $html;
     }
 
 }

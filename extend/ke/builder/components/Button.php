@@ -76,7 +76,7 @@ class Button extends Component
     }
 
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['text'])) {
             throw new Exception('button.text is null');
@@ -85,7 +85,7 @@ class Button extends Component
         $theme = $this->options['theme'][0] ?? self::THEME_DEFAULT;
         $size = $this->options['size'][0] ?? self::SIZE_DEFAULT;
 
-        $html = new Html('button');
+        $html = new Html('button', $this->id);
         if (!is_null($type)) {
             $html->withAttr('type', $type);
 
@@ -110,7 +110,7 @@ class Button extends Component
             $html->withClass('layui-btn-' . $size);
         }
 
-        return $html->toString();
+        return $html;
     }
 
 }

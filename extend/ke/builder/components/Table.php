@@ -39,7 +39,7 @@ class Table extends Component
         return $res;
     }
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['columns'])) {
             throw new Exception('columns is null');
@@ -48,7 +48,7 @@ class Table extends Component
             throw new Exception('load is null');
         }
         Context::addedModule('k_table');
-        $html = new Html('table');
+        $html = new Html('table', $this->id);
         $html->withAttr('lay-filter', $this->id);
         $html->withAttr('lay-data', json_encode([
             'url'=>$this->request->url(),
@@ -71,7 +71,7 @@ class Table extends Component
                 (new Html('tr'))->withValue($columns)
             ])
         ]);
-        return $html->toString();
+        return $html;
     }
 
 }

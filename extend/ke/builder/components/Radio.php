@@ -24,7 +24,7 @@ use ke\builder\Html;
  */
 class Radio extends Component
 {
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['name'])) {
             throw new Exception('radio.name is null');
@@ -35,7 +35,7 @@ class Radio extends Component
         $checkedValue = $this->options['value'][0] ?? null;
 
         $name = $this->options['name'][0];
-        $content = '';
+        $content = [];
         foreach ($this->options['options'][0] as $value=>$text) {
             $html = new Html('input');
             $html->withAttr('type', 'radio');
@@ -45,10 +45,10 @@ class Radio extends Component
             if (!is_null($checkedValue) && $checkedValue == $value) {
                 $html->withAttr('checked', '');
             }
-            $content .= $html->toString();
+            $content[] = $html;
         }
 
-        return $content;
+        return (new Html('div', $this->id))->withValue($content);
     }
 
 }

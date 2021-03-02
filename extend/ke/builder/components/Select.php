@@ -29,7 +29,7 @@ class Select extends Component
     ];
 
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['name'])) {
             throw new Exception('select.name is null');
@@ -39,8 +39,7 @@ class Select extends Component
         }
         $checkedValue = $this->options['value'][0] ?? null;
 
-        $html = new Html();
-        $html->withTag('select');
+        $html = new Html('select', $this->id);
 
         $html->withAttr('name', $this->options['name'][0]);
         if (isset($this->options['verify'])) {
@@ -60,7 +59,7 @@ class Select extends Component
         }
         $html->withValue(PHP_EOL . $content);
 
-        return $html->toString();
+        return $html;
     }
 
 }

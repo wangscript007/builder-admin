@@ -35,13 +35,12 @@ class Link extends Component
     }
 
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['url'])) {
             throw new Exception('link.url is null');
         }
-        $html = new Html();
-        $html->withTag('a');
+        $html = new Html('a', $this->id);
 
         $style = $this->getStyle();
         if ($style) {
@@ -49,7 +48,7 @@ class Link extends Component
         }
         $html->withAttr('href', $this->options['url'][0]);
         $html->withValue($this->buildComponent());
-        return $html->toString();
+        return $html;
     }
 
 }

@@ -23,21 +23,20 @@ class Card extends Component
 {
     use ComponentChildren;
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['title'])) {
             throw new Exception('card.title is null');
         }
 
-        $html = new Html();
-        $html->withTag('div');
+        $html = new Html('div', $this->id);
         $html->withClass('layui-card');
         $html->withValue([
             (new Html('div'))->withClass('layui-card-header')->withValue($this->options['title'][0]),
             (new Html('div'))->withClass('layui-card-body')->withValue($this->buildComponent()),
         ]);
 
-        return $html->toString();
+        return $html;
     }
 
 }

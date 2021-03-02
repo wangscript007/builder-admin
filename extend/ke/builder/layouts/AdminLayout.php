@@ -29,10 +29,10 @@ class AdminLayout extends Component
     use ComponentChildren;
 
     /**
-     * @return string
+     * @return Html
      * @throws Exception
      */
-    public function build(): string
+    public function build()
     {
         Context::addedModule('admin_layout');
         if (!isset($this->options['menu'])) {
@@ -52,7 +52,7 @@ class AdminLayout extends Component
 
         $container->withValue([$menu, $header, $body]);
 
-        return $container->toString();
+        return $container;
     }
 
 

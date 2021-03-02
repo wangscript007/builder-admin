@@ -54,10 +54,10 @@ class Container extends Component
     }
 
 
-    public function build(): string
+    public function build()
     {
         $html = new Html();
-        $html->withTag('div');
+        $html->withTag('div', $this->id);
         $style = $this->getStyle();
         if ($style) {
             $html->withAttr('style', $style);
@@ -68,7 +68,7 @@ class Container extends Component
         }
         $html->withValue($this->buildComponent());
 
-        return $html->toString();
+        return $html;
     }
 
 }

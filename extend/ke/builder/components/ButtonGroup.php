@@ -22,16 +22,15 @@ class ButtonGroup extends Component
 {
     use ComponentChildren;
 
-    public function build(): string
+    public function build()
     {
-        $html = new Html();
-        $html->withTag('div');
+        $html = new Html('div', $this->id);
 
         $html->withValue($this->buildComponent());
 
         $html->withClass('layui-btn-group');
 
-        return $html->toString();
+        return $html;
     }
 
 }

@@ -22,13 +22,13 @@ use ke\builder\Html;
  */
 class Switchers extends Component
 {
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['name'])) {
             throw new Exception('switchers.name is null');
         }
 
-        $html = new Html('input');
+        $html = new Html('input', $this->id);
 
         $html->withAttr('name', $this->options['name'][0]);
         $html->withAttr('type', 'checkbox');
@@ -37,7 +37,7 @@ class Switchers extends Component
             $html->withAttr('checked', '');
         }
 
-        return $html->toString();
+        return $html;
     }
 
 }

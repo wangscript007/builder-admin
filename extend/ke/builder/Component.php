@@ -57,9 +57,11 @@ class Component
     }
 
 
-    public function build(): string
+    /**
+     * @return Html
+     */
+    public function build()
     {
-        return '';
     }
 
 
@@ -69,6 +71,7 @@ class Component
      */
     public function render(): string
     {
+        $html = $this->build();
         // 写进缓存
 //        $root_path = App::getRuntimePath() . 'builder/';
 //        if (!is_dir($root_path)) {
@@ -84,7 +87,8 @@ class Component
 //        file_put_contents($root_path . $filename . '.php', $content);
 //
 //        return $content;
-        return $this->build();
+
+        return $html->toString();
     }
 
 }

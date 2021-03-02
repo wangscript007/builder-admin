@@ -21,16 +21,15 @@ use ke\builder\Html;
  */
 class Hr extends Component
 {
-    public function build(): string
+    public function build()
     {
         $mode = $this->options['mode'][0] ?? '';
-        $html = new Html();
-        $html->withTag('hr');
+        $html = new Html('hr', $this->id);
         if ($mode) {
             $html->withClass('layui-bg-' . $mode);
         }
 
-        return $html->toString();
+        return $html;
     }
 
 }

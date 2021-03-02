@@ -32,12 +32,12 @@ class Icon extends Component
     /**
      * @return string
      */
-    public function build(): string
+    public function build()
     {
-        $html = new Html('i');
+        $html = new Html('i', $this->id);
         $html->withClass('layui-icon layui-icon-' . $this->name);
         $html->withValue('');
-        return $html->toString();
+        return $html;
     }
 
 }

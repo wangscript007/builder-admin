@@ -30,6 +30,17 @@ class Html
     }
 
 
+    public function getOptions()
+    {
+        return [
+            'tagName'=>$this->tagName,
+            'value'=>$this->value,
+            'attrs'=>$this->attrs,
+            'class'=>$this->class
+        ];
+    }
+
+
     public function withTag($name)
     {
         $this->tagName = $name;

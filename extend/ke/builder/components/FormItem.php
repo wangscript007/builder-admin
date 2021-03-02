@@ -29,10 +29,9 @@ class FormItem extends Component
     ];
 
 
-    public function build(): string
+    public function build()
     {
-        $html = new Html();
-        $html->withTag('div');
+        $html = new Html('div', $this->id);
         $html->withClass('layui-form-item');
 
         $str = $this->buildComponent();
@@ -56,7 +55,7 @@ class FormItem extends Component
 
         $html->withValue($content);
 
-        return $html->toString();
+        return $html;
     }
 
 }

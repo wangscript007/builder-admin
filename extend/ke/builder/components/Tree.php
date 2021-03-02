@@ -30,15 +30,14 @@ class Tree extends Component
         $this->id = $id;
     }
 
-    public function build(): string
+    public function build()
     {
         if (!isset($this->options['data'])) {
             throw new Exception('tree.data is null');
         }
         Context::addedModule('k_tree');
 
-        $html = new Html();
-        $html->withTag('div');
+        $html = new Html('div', $this->id);
         $html->withAttr('id', $this->id);
         $html->withAttr('data-tree', json_encode([
             'data'=>$this->options['data'][0],
@@ -46,7 +45,7 @@ class Tree extends Component
             'showCheckbox'=>$this->options['checkbox'][0] ?? false,
         ]), true);
         $html->withValue('');
-        return $html->toString();
+        return $html;
     }
 
 }
