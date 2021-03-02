@@ -36,7 +36,7 @@ trait ComponentChildren
         $contents = '';
         if (count($this->components)) {
             foreach ($this->components as $component) {
-                $str = $component->build();
+                $str = $component->render();
                 $contents .= PHP_EOL . ($callback ? call_user_func_array($callback, [$str]) : $str) . PHP_EOL;
             }
         }

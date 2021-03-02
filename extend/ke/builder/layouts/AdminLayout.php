@@ -258,20 +258,74 @@ class AdminLayout extends Component
      */
     protected function createTabs(): Html
     {
-        $container = new Html('div');
+        $container = new Html('div', 'admin-layout-tabs');
 
-        $container->withAttr('id', 'admin-layout-tabs');
-        $container->withClass('layui-tab layui-tab-brief');
-        $container->withAttr('lay-filter', 'admin-layout-tabs');
-        $container->withAttr('lay-allowClose', 'true');
+        $container->withClass('ke-body-tabs');
+
         $container->withValue([
-            (new Html('ul'))
-                ->withClass('layui-tab-title')
+            (new Html('div'))
+                ->withClass('layui-icon layui-icon-prev ke-body-tab-icon ke-body-tab-prev')
+                ->withValue(''),
+            (new Html('div'))
+                ->withClass('layui-icon layui-icon-next ke-body-tab-icon ke-body-tab-next')
+                ->withValue(''),
+            (new Html('div'))
+                ->withClass('layui-icon layui-icon-down ke-body-tab-icon ke-body-tab-down')
                 ->withValue([
-                    (new Html('li'))
-                        ->withClass('layui-this')
-                        ->withAttr('lay-id', '/')
-                        ->withValue('首页')
+                    (new Html('ul'))
+                        ->withClass('layui-nav')
+                        ->withAttr('lay-filter', 'admin-layout-tabs-nav')
+                        ->withValue([
+                            (new Html('li'))
+                                ->withAttr('lay-unselect', '')
+                                ->withClass('layui-nav-item')
+                                ->withValue([
+                                    (new Html('a'))
+                                    ->withAttr('href', 'javascript:;')
+                                    ->withValue((new Html('span'))
+                                        ->withClass('layui-nav-more')
+                                        ->withValue('')
+                                    ),
+
+                                    (new Html('dl'))
+                                        ->withClass('layui-nav-child layui-anim-fadein layui-anim layui-anim-upbit')
+                                        ->withValue([
+                                            (new Html('dd'))
+                                                ->withValue((new Html('a'))
+                                                    ->withAttr('href', 'javascript:;')
+                                                    ->withAttr('event', 'closeCurrent')
+                                                    ->withValue('关闭当前标签页')
+                                                ),
+                                            (new Html('dd'))
+                                                ->withValue((new Html('a'))
+                                                    ->withAttr('href', 'javascript:;')
+                                                    ->withAttr('event', 'closeOther')
+                                                    ->withValue('关闭其它标签页')
+                                                ),
+                                            (new Html('dd'))
+                                                ->withValue((new Html('a'))
+                                                    ->withAttr('href', 'javascript:;')
+                                                    ->withAttr('event', 'closeAll')
+                                                    ->withValue('关闭所有标签页')
+                                                )
+                                        ])
+                                ]),
+                        ]),
+                ]),
+            (new Html('div'))
+                ->withClass('layui-tab layui-tab-brief')
+                ->withAttr('lay-filter', 'admin-layout-tabs')
+                ->withAttr('lay-allowClose', 'true')
+                ->withAttr('lay-unauto', '')
+                ->withValue([
+                    (new Html('ul'))
+                        ->withClass('layui-tab-title')
+                        ->withValue([
+                            (new Html('li'))
+                                ->withClass('layui-this')
+                                ->withAttr('lay-id', '/')
+                                ->withValue('首页'),
+                        ])
                 ])
         ]);
 

@@ -87,15 +87,17 @@ class Html
                 $content .= $this->getValue($item);
             }
             return $content;
-        } else if (is_callable($value)) {
-            return call_user_func($value);
-        } else if ($value instanceof Html) {
-            return $value->toString();
-        } else if ($value instanceof Component) {
-            return $value->build();
-        } else {
-            return $value;
         }
+        if (is_callable($value)) {
+            return call_user_func($value);
+        }
+        if ($value instanceof Html) {
+            return $value->toString();
+        }
+        if ($value instanceof Component) {
+            return $value->render();
+        }
+        return $value;
     }
 
 
@@ -123,9 +125,8 @@ class Html
         $value = $this->getValue($this->value);
         if (!is_null($value)) {
             return '<' . $this->tagName . $attr . $class . '>' . $value . '</' . $this->tagName . '>';
-        } else {
-            return '<' . $this->tagName . $attr. $class . ' />';
         }
+        return '<' . $this->tagName . $attr. $class . ' />';
     }
 
 }

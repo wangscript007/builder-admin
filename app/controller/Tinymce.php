@@ -23,7 +23,7 @@ class Tinymce extends BaseController
                 ->withContent('测试图片上传都直接返回/uploads/1.jpg')
             )
             ->addComponent((new TinymceComponent('tinymce'))
-                ->withJs('/static/builder/plugins/tinymce/tinymce.min.js')
+                ->withJs('/static/builder/libs/tinymce/tinymce.min.js')
                 ->withImageUploadUrl('/uploads/index')
             )
         );

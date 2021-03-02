@@ -174,7 +174,7 @@ class Engine extends Response
                 ->withAttr('content', 'width=device-width, initial-scale=1, maximum-scale=1'),
             (new Html('title'))->withValue($this->title),
             (new Html('link'))->withAttr('rel', 'stylesheet')
-                ->withAttr('href', $this->loadAssets('layui/css/layui.css', $version)),
+                ->withAttr('href', $this->loadAssets('builder/libs/layui/css/layui.css', $version)),
             (new Html('link'))->withAttr('rel', 'stylesheet')
                 ->withAttr('href', $this->loadAssets('builder/css/app.css', $version)),
         ]);
@@ -183,16 +183,16 @@ class Engine extends Response
             $content = '';
 
             foreach ($this->components as $component) {
-                $content .= $component->build();
+                $content .= $component->render();
             }
 
             $content .= PHP_EOL . (new Html('script'))
                     ->withValue('')
-                    ->withAttr('src', $this->loadAssets('builder/jquery.min.js', '3.5.1'))
+                    ->withAttr('src', $this->loadAssets('builder/libs/jquery.min.js', '3.5.1'))
                     ->toString();
             $content .= PHP_EOL . (new Html('script'))
                     ->withValue('')
-                    ->withAttr('src', $this->loadAssets('layui/layui.js', $version))
+                    ->withAttr('src', $this->loadAssets('builder/libs/layui/layui.js', $version))
                     ->toString();
             $content .= PHP_EOL . (new Html('script'))
                     ->withValue('')
@@ -219,7 +219,7 @@ class Engine extends Response
             $content .= PHP_EOL . (new Html('script'))
                     ->withValue([
                         'var componentOptions = ' . Context::getClientOptions() . ';',
-                        'layui.config({ version: \'' . ($version) . '\', base: \'' . $this->config['path'] . '/builder/plugins/\' });',
+                        'layui.config({ version: \'' . ($version) . '\', base: \'' . $this->config['path'] . '/builder/\' });',
                         sprintf('layui.use([%s], function() {%s})', $script, $initMod),
                     ])
                     ->toString();

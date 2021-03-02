@@ -12,6 +12,7 @@ namespace ke\builder;
 
 use ke\builder\exceptions\Exception;
 use think\Container;
+use think\facade\App;
 use think\Request;
 use function Symfony\Component\String\u;
 
@@ -25,8 +26,6 @@ class Component
     protected $request;
 
     protected $options = [];
-
-    protected $pluginJs = [];
 
 
     public function __construct()
@@ -61,6 +60,31 @@ class Component
     public function build(): string
     {
         return '';
+    }
+
+
+    /**
+     * 渲染组件
+     * @return string
+     */
+    public function render(): string
+    {
+        // 写进缓存
+//        $root_path = App::getRuntimePath() . 'builder/';
+//        if (!is_dir($root_path)) {
+//            mkdir($root_path, 0755, true);
+//        }
+//        $filename = str_replace('\\', '_', get_class($this));
+//
+//        if (is_file($root_path . $filename . '.php')) {
+//            return file_get_contents($root_path . $filename . '.php');
+//        }
+//        $content = $this->build();
+//
+//        file_put_contents($root_path . $filename . '.php', $content);
+//
+//        return $content;
+        return $this->build();
     }
 
 }

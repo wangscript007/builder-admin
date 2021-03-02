@@ -75,6 +75,26 @@ class AdminLayout extends BaseController
                             'url'=>url('tinymce/index'),
                             'text'=>'富文本'
                         ],
+                        [
+                            'url'=>url('tinymce/index2'),
+                            'text'=>'富文本2'
+                        ],
+                        [
+                            'url'=>url('tinymce/index3'),
+                            'text'=>'富文本3'
+                        ],
+                        [
+                            'url'=>url('tinymce/index4'),
+                            'text'=>'富文本4'
+                        ],
+                        [
+                            'url'=>url('tinymce/index5'),
+                            'text'=>'富文本5'
+                        ],
+                        [
+                            'url'=>url('tinymce/index6'),
+                            'text'=>'富文本6'
+                        ],
                     ]
                 ],
                 [

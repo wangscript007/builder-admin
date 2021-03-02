@@ -44,7 +44,7 @@ class Echarts extends Component
     public function build(): string
     {
         Context::addedModule('k_echarts');
-        Context::addedJs('builder/plugins/echarts/echarts.min.js');
+        Context::addedJs('builder/libs/echarts/echarts.min.js');
         $this->addClientOptions('echarts', $this->initOption);
 
         $container = new Html('div', $this->id);
