@@ -5,19 +5,17 @@ namespace app\controller;
 
 
 use app\BaseController;
-use ke\builder\components\Card;
-use ke\builder\components\Container;
-use ke\builder\components\Echarts as EchartsComponent;
+use ke\builder\ComponentFactory;
 
 class Echarts extends BaseController
 {
     public function index()
     {
-        $this->engine->addComponent((new Container())
-            ->addComponent((new Card())
+        $this->engine->addComponent(ComponentFactory::Container()
+            ->addComponent(ComponentFactory::Card()
                 ->withTitle('图表')
 
-                ->addComponent((new EchartsComponent([
+                ->addComponent(ComponentFactory::Echarts([
                     'title'=>[
                         'text'=>'折线图'
                     ],
@@ -32,9 +30,9 @@ class Echarts extends BaseController
                         'data'=>[150, 230, 224, 218, 135, 147, 260],
                         'type'=>'line'
                     ]
-                ])))
+                ]))
 
-                ->addComponent((new EchartsComponent([
+                ->addComponent(ComponentFactory::Echarts([
                     'title'=>[
                         'text'=>'柱状图'
                     ],
@@ -49,9 +47,9 @@ class Echarts extends BaseController
                         'data'=>[150, 230, 224, 218, 135, 147, 260],
                         'type'=>'bar'
                     ]
-                ])))
+                ]))
 
-                ->addComponent((new EchartsComponent([
+                ->addComponent(ComponentFactory::Echarts([
                     'legend'=>[
                         'orient'=>'vertical',
                         'left'=>'left'
@@ -77,7 +75,7 @@ class Echarts extends BaseController
                             ]
                         ]
                     ]
-                ])))
+                ]))
             )
         );
 

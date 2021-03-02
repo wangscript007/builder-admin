@@ -24,11 +24,13 @@ use ke\builder\Html;
  */
 class Tinymce extends Component
 {
-    public function __construct(string $id)
+    protected $name = '';
+
+    public function __construct(string $name)
     {
         parent::__construct();
 
-        $this->id = $id;
+        $this->name = $name;
     }
 
     public function build()
@@ -44,8 +46,7 @@ class Tinymce extends Component
         $script->withValue('');
 
         $html = new Html('textarea');
-        $html->withAttr('id', $this->id);
-        $html->withAttr('name', $this->id);
+        $html->withAttr('name', $this->name);
         $html->withAttr('k-tinymce', json_encode((object)array_filter([
             'height'=>$this->options['height'][0] ?? null,
             'lang'=>$this->options['lang'][0] ?? 'zh_CN',

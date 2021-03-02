@@ -24,11 +24,13 @@ class Form extends Component
 {
     use ComponentChildren;
 
-    public function __construct(string $id)
+    protected $name = '';
+
+    public function __construct(string $name)
     {
         parent::__construct();
 
-        $this->id = $id;
+        $this->name = $name;
     }
 
     public function load()
@@ -51,8 +53,7 @@ class Form extends Component
         $html = new Html('form', $this->id);
         $html->withClass('layui-form');
 
-        $html->withAttr('id', $this->id);
-        $html->withAttr('name', $this->id);
+        $html->withAttr('name', $this->name);
 
         $html->withValue($this->buildComponent());
 

@@ -5,8 +5,7 @@ namespace app\controller;
 
 
 use app\BaseController;
-use ke\builder\components\Container;
-use ke\builder\components\Text;
+use ke\builder\ComponentFactory;
 use ke\builder\layouts\AdminLayout as DefaultAdminLayout;
 
 class AdminLayout extends BaseController
@@ -14,8 +13,8 @@ class AdminLayout extends BaseController
 
     public function home()
     {
-        $this->engine->addComponent((new Container())
-            ->addComponent((new Text())
+        $this->engine->addComponent(ComponentFactory::Container()
+            ->addComponent(ComponentFactory::Text()
                 ->withContent('hello world')
             )
         );

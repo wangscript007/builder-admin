@@ -5,9 +5,7 @@ namespace app\controller;
 
 
 use app\BaseController;
-use ke\builder\components\Text;
-use ke\builder\components\Tinymce as TinymceComponent;
-use ke\builder\components\Container;
+use ke\builder\ComponentFactory;
 
 class Tinymce extends BaseController
 {
@@ -17,12 +15,12 @@ class Tinymce extends BaseController
     {
 
         // 容器
-        $this->engine->addComponent((new Container())
+        $this->engine->addComponent(ComponentFactory::Container()
             ->withLayout(true)
-            ->addComponent((new Text())
+            ->addComponent(ComponentFactory::Text()
                 ->withContent('测试图片上传都直接返回/uploads/1.jpg')
             )
-            ->addComponent((new TinymceComponent('tinymce'))
+            ->addComponent(ComponentFactory::Tinymce('tinymce')
                 ->withJs('/static/builder/libs/tinymce/tinymce.min.js')
                 ->withImageUploadUrl('/uploads/index')
             )

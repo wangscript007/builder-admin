@@ -5,14 +5,14 @@ namespace app\controller;
 
 
 use app\BaseController;
-use ke\builder\components\Tree as TreeComponent;
+use ke\builder\ComponentFactory;
 
 class Tree extends BaseController
 {
 
     public function index()
     {
-        $this->engine->addComponent((new TreeComponent('tree'))
+        $this->engine->addComponent(ComponentFactory::Tree('tree')
             ->withEdit(['add', 'update', 'del'])
             ->withData([
                 [

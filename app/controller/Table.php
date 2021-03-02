@@ -5,7 +5,7 @@ namespace app\controller;
 
 
 use app\BaseController;
-use ke\builder\components\Table as TableComponent;
+use ke\builder\ComponentFactory;
 use ke\builder\response\ListResponse;
 
 class Table extends BaseController
@@ -13,7 +13,7 @@ class Table extends BaseController
 
     public function index()
     {
-        $this->engine->addComponent((new TableComponent('table'))
+        $this->engine->addComponent(ComponentFactory::Table('table')
             ->withColumns([
                 [
                     'field'=>'id',
@@ -43,7 +43,7 @@ class Table extends BaseController
         );
 
 
-        $this->engine->addComponent((new TableComponent('table2'))
+        $this->engine->addComponent(ComponentFactory::Table('table2')
             ->withColumns([
                 [
                     'field'=>'id',
