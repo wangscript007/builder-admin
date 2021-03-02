@@ -17,3 +17,5 @@
   * [Table 表格](/components/table.md)
   * [Text 文本](/components/text.md)
   * [Tree 树形结构](/components/tree.md)
+* 助手
+  * [ComponentFactory 组件工厂类](./class/component-factory.md)
